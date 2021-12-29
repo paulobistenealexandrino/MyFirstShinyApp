@@ -8,12 +8,15 @@ if (!require(pacman)) {
 pacman::p_load(shiny, ggplot2, dplyr, tidyr)
 
 # Building App
+
+# User interface
 ui <- fluidPage(
-  h1("My First Shiny App"),
-  p("This is my first Shiny app! Here I'm using the Iris dataset."),
-  plotOutput("graph_1")
+  h1("My First Shiny App"), # Title
+  p("This is my first Shiny app! Here I'm using the Iris dataset."), # Paragraph
+  plotOutput("graph_1") # Plotting output: graph
 )
 
+# Server (where the R processing happens)
 server <- function(input, output, session) {
   output$graph_1 <- renderPlot(
     iris %>%
@@ -33,4 +36,5 @@ server <- function(input, output, session) {
   )
 }
 
+# Rendering the app
 shinyApp(ui, server)
